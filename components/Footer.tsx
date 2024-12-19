@@ -57,7 +57,7 @@ const Footer = () => {
               <a href="https://www.walrus.xyz" className="hover:text-white/50 hover:font-bold transition-colors">Walrus</a>
               <a href="https://www.mystenlabs.com" className="hover:text-white/50 hover:font-bold transition-colors">Mysten Labs</a>
               <a href="https://x.com/0xHOH" className="hover:text-white/50 hover:font-bold transition-colors">HOH</a>
-              <a href="https://github.com/move-cn/letsmove" className="hover:text-white/50 hover:font-bold transition-colors">Let's Move</a>
+              <a href="https://github.com/move-cn/letsmove" className="hover:text-white/50 hover:font-bold transition-colors">Let&#39;s Move</a>
             </div>
           </div>
         </div>

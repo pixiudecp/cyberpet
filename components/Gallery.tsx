@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useCurrentAccount, useConnectWallet, useWallets, useDisconnectWallet,useSignAndExecuteTransaction } from "@mysten/dapp-kit";
+import { useCurrentAccount,useSignAndExecuteTransaction } from "@mysten/dapp-kit";
 import Image from "next/image";
 
-import { CategorizedObjects, calculateTotalBalance, formatBalance } from '@/utils/assetsHelpers'
+import { CategorizedObjects} from '@/utils/assetsHelpers'
 import { getUserProfile } from '@/contracts/query'
 import { useNetworkVariable } from "@/config/networkConfig";
 import { Transaction } from "@mysten/sui/transactions";
@@ -27,7 +27,7 @@ const Gallery: React.FC<GalleryProps> = ({ mintTrigger = 0 }) => {
     const [deleteId, setDeleteId] = useState<string | null>(null); // 要删除的 NFT id
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [delTrigger, setDelTrigger] = useState(0);
-    const { mutateAsync: signAndExecute, isError } = useSignAndExecuteTransaction();
+    const { mutateAsync: signAndExecute } = useSignAndExecuteTransaction();
 
     const deleteNFT = async (nftId: string) => {
         // if (!currentAccount?.address) {
@@ -65,38 +65,27 @@ const Gallery: React.FC<GalleryProps> = ({ mintTrigger = 0 }) => {
         }
     };
 
-    // 复制地址的处理函数
-    const handleCopyAddress = () => {
-        if (account?.address) {
-            navigator.clipboard.writeText(account.address);
-        }
-    };
 
-    const fetchUserProfile = async () => {
-        if (account?.address) {
-            try {
-                const profile = await getUserProfile(account.address);
-                setUserObjects(profile);
-            } catch (error) {
-                console.error('Error fetching user profile:', error);
-            }
-        }
-    };
+
+
 
     useEffect(() => {
+        const fetchUserProfile = async () => {
+            if (account?.address) {
+                try {
+                    const profile = await getUserProfile(account.address);
+                    setUserObjects(profile);
+                } catch (error) {
+                    console.error('Error fetching user profile:', error);
+                }
+            }
+        };
         fetchUserProfile();
     }, [account, mintTrigger, delTrigger]);
 
 
 
 
-    // 断开连接的处理函数
-    const handleDisconnectWallet = () => {
-
-        setShowDropdown(false); // 关闭下拉框
-    };
-
-    // 监听点击事件来关闭下拉框
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             // 判断点击是否发生在按钮或下拉框外部

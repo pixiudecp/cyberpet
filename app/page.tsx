@@ -1,29 +1,22 @@
 "use client"
 
 
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Upload, Link, Sparkles } from 'lucide-react'
-// import { Navbar } from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { BackgroundVideo } from '@/components/BackgroundVideo'
 
 import Image from 'next/image'
-import { Wallet, Cat } from 'lucide-react'
-
-// import { ConnectButton } from '@mysten/dapp-kit'
-// import { getUserProfile } from '@/contracts/query'
 import { useCurrentAccount, useSignAndExecuteTransaction } from '@mysten/dapp-kit'
-// import { CategorizedObjects, calculateTotalBalance, formatBalance } from '@/utils/assetsHelpers'
 
 import CustomConnectWallet from "@/components/CustomConnectWallet"
 
 import { Transaction } from "@mysten/sui/transactions";
 import { useNetworkVariable } from "@/config/networkConfig";
-// import { TESTNET_GAS_AMOUNTS } from "@/config/constants";
 
 import Gallery from "@/components/Gallery"
 
@@ -38,7 +31,7 @@ export default function Home() {
   const [uploading, setUploading] = useState(false)
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null)
 
-  const account = useCurrentAccount();
+
   // const [userObjects, setUserObjects] = useState<CategorizedObjects | null>(null);
 
   const { mutateAsync: signAndExecute, isError } = useSignAndExecuteTransaction();
@@ -47,13 +40,13 @@ export default function Home() {
   // console.log("myPackageId", myPackageId);
 
 
-  const [, setLoading] = useState(false);
+
 
   const [mintTrigger, setMintTrigger] = useState(0);
 
   const [petName, setPetName] = useState('');
 
-  const { storeBlob, uploadedBlobs } = useUploadBlob();
+  const { storeBlob} = useUploadBlob();
 
 
   const currentAccount = useCurrentAccount();
