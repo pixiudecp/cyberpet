@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { Wallet, Cat } from 'lucide-react'
 
+
 export const Navbar = () => {
     const [isWalletConnected, setIsWalletConnected] = useState(false)
 
